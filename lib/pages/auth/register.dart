@@ -1,4 +1,6 @@
+import 'package:fasttrack/pages/auth/customer/customer_register.dart';
 import 'package:fasttrack/pages/auth/login.dart';
+import 'package:fasttrack/pages/auth/rider/rider_register.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {
@@ -20,6 +22,19 @@ class _RegisterState extends State<Register> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Spacer(),
+
+              const Text(
+                'Register',
+                style: TextStyle(
+                  fontFamily: 'Montserrat',
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 0, 0, 0),
+                  letterSpacing: 1.2,
+                ),
+              ),
+
+              const SizedBox(height: 60),
 
               // ปุ่ม Rider
               SizedBox(
@@ -92,9 +107,19 @@ class _RegisterState extends State<Register> {
     );
   }
 
-  void Rider() {}
+  void Rider() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => RiderRegister()),
+    );
+  }
 
-  void Customer() {}
+  void Customer() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CustomerRegister()),
+    );
+  }
 
   void LoginPage() {
     Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));

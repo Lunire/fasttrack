@@ -1,4 +1,6 @@
-import 'package:fasttrack/pages/auth/main_screen.dart';
+import 'package:fasttrack/pages/auth/customer/customer_login.dart';
+import 'package:fasttrack/pages/auth/register.dart';
+import 'package:fasttrack/pages/auth/rider/rider_login.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -9,12 +11,10 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  bool _obscureText = true; // เริ่มต้นเป็นซ่อนรหัสผ่าน
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF3532D7),
+      backgroundColor: const Color(0xFF3532D7), // พื้นหลังสี #3532D7
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -23,9 +23,8 @@ class _LoginState extends State<Login> {
             children: [
               const Spacer(),
 
-              // ชื่อแอป
               const Text(
-                'FastTrack',
+                'Login',
                 style: TextStyle(
                   fontFamily: 'Montserrat',
                   fontSize: 36,
@@ -35,104 +34,44 @@ class _LoginState extends State<Login> {
                 ),
               ),
 
-              const SizedBox(height: 53),
+              const SizedBox(height: 60),
 
-              // ช่อง User Name
-              Material(
-                color: Colors.white,
-                elevation: 4,
-                child: TextField(
-                  decoration: InputDecoration(
-                    labelText: 'User Name',
-                    labelStyle: const TextStyle(color: Color(0xFF98A1B3)),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Colors.white,
-                        width: 2,
-                      ),
+              // ปุ่ม Get Started
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: Rider,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: const Color(0xFF3532D7),
+                    elevation: 4,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Color(0xFF98A1B3),
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(0),
-                    ),
-                    prefixIcon: const Icon(
-                      Icons.person,
-                      color: Color(0xFF98A1B3),
+                    textStyle: const TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  style: const TextStyle(
-                    color: Color(0xFF98A1B3),
-                  ), // สีตัวอักษร
-                  cursorColor: Color(0xFF98A1B3), // สีเคอร์เซอร์
+                  child: const Text('Rider'),
                 ),
               ),
 
-              const SizedBox(height: 32),
-
-              // ช่อง Password
-              Material(
-                color: Colors.white,
-                elevation: 4,
-                child: TextField(
-                  obscureText: _obscureText,
-                  decoration: InputDecoration(
-                    labelText: 'Password',
-                    labelStyle: const TextStyle(
-                      color: Color(0xFF98A1B3),
-                    ), // label สี #98A1B3
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Colors.white,
-                        width: 2,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Color(0xFF98A1B3),
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(0),
-                    ),
-                    prefixIcon: const Icon(
-                      Icons.lock,
-                      color: Color(0xFF98A1B3),
-                    ),
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        _obscureText ? Icons.visibility_off : Icons.visibility,
-                        color: const Color(0xFF98A1B3),
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          _obscureText = !_obscureText; // toggle ซ่อน/แสดง
-                        });
-                      },
-                    ), // icon สีเดียวกัน
-                  ),
-                  style: const TextStyle(
-                    color: Color(0xFF98A1B3),
-                  ), // font สี #98A1B3
-                  cursorColor: Color(0xFF98A1B3), // สีเคอร์เซอร์
-                ),
-              ),
-
-              const SizedBox(height: 56),
+              const SizedBox(height: 36),
 
               // ปุ่ม Log In
               SizedBox(
                 width: double.infinity,
                 height: 50,
-                child: ElevatedButton(
-                  onPressed: Login,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF3532D7),
-                    foregroundColor: Colors.white,
+                child: OutlinedButton(
+                  onPressed: Customer,
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: const Color(0xFF3532D7),
                     elevation: 4,
                     shape: RoundedRectangleBorder(
-                      side: const BorderSide(color: Colors.white, width: 1),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     textStyle: const TextStyle(
@@ -141,33 +80,22 @@ class _LoginState extends State<Login> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  child: const Text('Log In'),
+                  child: const Text('Customer'),
                 ),
               ),
 
-              const SizedBox(height: 19),
+              const SizedBox(height: 27),
 
-              // ปุ่ม Back
-              SizedBox(
-                width: double.infinity,
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: Back,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF3532D7),
-                    foregroundColor: Colors.white,
-                    elevation: 4,
-                    shape: RoundedRectangleBorder(
-                      side: const BorderSide(color: Colors.white, width: 1),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    textStyle: const TextStyle(
-                      fontFamily: 'Montserrat',
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
+              // ลิงก์ Register
+              TextButton(
+                onPressed: RegisterPage,
+                child: const Text(
+                  'Not have any account? Register',
+                  style: TextStyle(
+                    fontFamily: 'Montserrat',
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    fontSize: 14,
                   ),
-                  child: const Text('Back'),
                 ),
               ),
 
@@ -179,12 +107,24 @@ class _LoginState extends State<Login> {
     );
   }
 
-  void Login() {}
-
-  void Back() {
+  void RegisterPage() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => MainScreen()),
+      MaterialPageRoute(builder: (context) => Register()),
+    );
+  }
+
+  void Rider() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => RiderLogin()),
+    );
+  }
+
+  void Customer() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CustomerLogin()),
     );
   }
 }

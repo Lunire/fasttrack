@@ -84,8 +84,6 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ),
 
-              const SizedBox(height: 40),
-
               const Spacer(),
             ],
           ),

@@ -63,7 +63,7 @@ class _LoadingState extends State<Loading> {
               ),
             ),
             
-            const SizedBox(height: 30),
+            // const SizedBox(height: 30),
           ],
         ),
       ),
