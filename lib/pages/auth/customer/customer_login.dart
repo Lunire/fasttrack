@@ -64,9 +64,7 @@ class _CustomerLoginState extends State<CustomerLogin> {
                       color: Color(0xFF98A1B3),
                     ),
                   ),
-                  style: const TextStyle(
-                    color: Color(0xFF98A1B3),
-                  ),
+                  style: const TextStyle(color: Color(0xFF98A1B3)),
                   cursorColor: Color(0xFF98A1B3),
                 ),
               ),
@@ -81,9 +79,7 @@ class _CustomerLoginState extends State<CustomerLogin> {
                   obscureText: _obscureText,
                   decoration: InputDecoration(
                     labelText: 'Password',
-                    labelStyle: const TextStyle(
-                      color: Color(0xFF98A1B3),
-                    ),
+                    labelStyle: const TextStyle(color: Color(0xFF98A1B3)),
                     enabledBorder: OutlineInputBorder(
                       borderSide: const BorderSide(
                         color: Colors.white,
@@ -109,9 +105,7 @@ class _CustomerLoginState extends State<CustomerLogin> {
                       onPressed: ToggelPassword,
                     ),
                   ),
-                  style: const TextStyle(
-                    color: Color(0xFF98A1B3),
-                  ),
+                  style: const TextStyle(color: Color(0xFF98A1B3)),
                   cursorColor: Color(0xFF98A1B3),
                 ),
               ),
@@ -190,9 +184,6 @@ class _CustomerLoginState extends State<CustomerLogin> {
   }
 
   void BackButton() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => Login()),
-    );
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
   }
 }
