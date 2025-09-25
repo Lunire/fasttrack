@@ -17,7 +17,7 @@ class _LoadingState extends State<Loading> {
 
   Future<void> _loadData() async {
     await Future.delayed(const Duration(seconds: 10));
-    
+
     // นำทางไปหน้า Onboarding หลังจากโหลดเสร็จ
     if (mounted) {
       Navigator.pushReplacement(
@@ -40,18 +40,15 @@ class _LoadingState extends State<Loading> {
               width: 100,
               height: 100,
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.2),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Icon(
-                Icons.rocket_launch,
-                size: 50,
-                color: Colors.white,
+                image: DecorationImage(
+                  image: AssetImage('assets/images/Group.png'),
+                  fit: BoxFit.contain, // หรือ BoxFit.cover แล้วแต่ต้องการ
+                ),
               ),
             ),
-            
+
             const SizedBox(height: 20),
-            
+
             // ชื่อแอป
             const Text(
               'FastTrack',
@@ -62,7 +59,7 @@ class _LoadingState extends State<Loading> {
                 color: Colors.white,
               ),
             ),
-            
+
             // const SizedBox(height: 30),
           ],
         ),

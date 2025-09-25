@@ -1,3 +1,4 @@
+import 'package:fasttrack/pages/profile/customer_profile.dart';
 import 'package:flutter/material.dart';
 
 class CustomerHome extends StatelessWidget {
@@ -17,16 +18,17 @@ class CustomerHome extends StatelessWidget {
       //   MaterialPageRoute(builder: (context) => SendParcelScreen()),
       // );
     } else if (index == 3) {
-      // Navigator.pushReplacement(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => ProfileScreen()),
-      // );
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => CustomerProfile()),
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFFDFDFD),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
