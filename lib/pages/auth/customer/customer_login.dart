@@ -38,13 +38,13 @@ class _CustomerLoginState extends State<CustomerLogin> {
 
               const SizedBox(height: 53),
 
-              // ช่อง User Name
+              // ช่อง Phone
               Material(
                 color: Colors.white,
                 elevation: 4,
                 child: TextField(
                   decoration: InputDecoration(
-                    labelText: 'User Name',
+                    labelText: 'Phone',
                     labelStyle: const TextStyle(color: Color(0xFF98A1B3)),
                     enabledBorder: OutlineInputBorder(
                       borderSide: const BorderSide(
@@ -60,7 +60,7 @@ class _CustomerLoginState extends State<CustomerLogin> {
                       borderRadius: BorderRadius.circular(0),
                     ),
                     prefixIcon: const Icon(
-                      Icons.person,
+                      Icons.phone,
                       color: Color(0xFF98A1B3),
                     ),
                   ),

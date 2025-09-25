@@ -38,13 +38,13 @@ class _RiderLoginState extends State<RiderLogin> {
 
               const SizedBox(height: 53),
 
-              // ช่อง User Name
+              // ช่อง Phone
               Material(
                 color: Colors.white,
                 elevation: 4,
                 child: TextField(
                   decoration: InputDecoration(
-                    labelText: 'User Name',
+                    labelText: 'Phone',
                     labelStyle: const TextStyle(color: Color(0xFF98A1B3)),
                     enabledBorder: OutlineInputBorder(
                       borderSide: const BorderSide(
@@ -60,7 +60,7 @@ class _RiderLoginState extends State<RiderLogin> {
                       borderRadius: BorderRadius.circular(0),
                     ),
                     prefixIcon: const Icon(
-                      Icons.person,
+                      Icons.phone,
                       color: Color(0xFF98A1B3),
                     ),
                   ),
@@ -184,9 +184,6 @@ class _RiderLoginState extends State<RiderLogin> {
   }
 
   void BackButton() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => Login()),
-    );
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
   }
 }
