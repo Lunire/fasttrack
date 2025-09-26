@@ -41,7 +41,7 @@ class _LoadingState extends State<Loading> {
               height: 100,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/Group.png'),
+                  image: AssetImage('assets/images/Logo.png'),
                   fit: BoxFit.contain, // หรือ BoxFit.cover แล้วแต่ต้องการ
                 ),
               ),
