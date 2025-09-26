@@ -10,9 +10,15 @@ class RiderProfile extends StatefulWidget {
 }
 
 class _RiderProfileState extends State<RiderProfile> {
+  final profileController = TextEditingController(
+    text: 'assets/images/avatar.png',
+  );
   final nameController = TextEditingController(text: 'balekeetak');
   final phoneController = TextEditingController(text: '+66 812345678');
   final caridController = TextEditingController(text: 'กน 54873');
+  final carpictureController = TextEditingController(
+    text: 'assets/images/avatar.png',
+  );
 
   void _onItemTapped(BuildContext context, int index) {
     if (index == 0) {
@@ -94,12 +100,7 @@ class _RiderProfileState extends State<RiderProfile> {
                     vertical: 8,
                   ),
                 ),
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => MainScreen()),
-                  );
-                },
+                onPressed: Logout,
                 child: const Text(
                   'Log Out',
                   style: TextStyle(fontWeight: FontWeight.bold),
@@ -107,13 +108,13 @@ class _RiderProfileState extends State<RiderProfile> {
               ),
             ),
 
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
 
             CircleAvatar(
               radius: 50,
-              backgroundImage: AssetImage('assets/images/avatar.png'),
+              backgroundImage: AssetImage(profileController.text),
             ),
-            SizedBox(height: 24),
+            SizedBox(height: 14),
 
             buildDisplayField(
               icon: Icons.person,
@@ -125,6 +126,31 @@ class _RiderProfileState extends State<RiderProfile> {
               label: 'Mobile Number',
               controller: phoneController,
             ),
+
+            const SizedBox(height: 28),
+
+            // ช่องแสดงรูปภาพ
+            Center(
+              child: Column(
+                children: [
+                  GestureDetector(
+                    child: Container(
+                      width: double.infinity,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(carpictureController.text),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
             buildDisplayField(
               icon: Icons.motorcycle,
               label: 'License plate',
@@ -145,6 +171,13 @@ class _RiderProfileState extends State<RiderProfile> {
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'โปรไฟล์'),
         ],
       ),
+    );
+  }
+
+  void Logout() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => MainScreen()),
     );
   }
 }

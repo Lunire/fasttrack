@@ -315,7 +315,7 @@ class _RiderRegisterState extends State<RiderRegister> {
                       GestureDetector(
                         onTap: _showImageSourceDialog,
                         child: Container(
-                          width: 300,
+                          width: double.infinity,
                           height: 200,
                           decoration: BoxDecoration(
                             color: const Color(0xFFD0D0D0).withOpacity(0.3),

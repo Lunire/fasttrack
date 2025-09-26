@@ -10,6 +10,9 @@ class CustomerProfile extends StatefulWidget {
 }
 
 class _CustomerProfileState extends State<CustomerProfile> {
+  final profileController = TextEditingController(
+    text: 'assets/images/avatar.png',
+  );
   final nameController = TextEditingController(text: 'balekeetak');
   final phoneController = TextEditingController(text: '+66 812345678');
   final addressController = TextEditingController(text: '12345 จ.ขอนแก่น');
@@ -94,12 +97,7 @@ class _CustomerProfileState extends State<CustomerProfile> {
                     vertical: 8,
                   ),
                 ),
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => MainScreen()),
-                  );
-                },
+                onPressed: Logout,
                 child: const Text(
                   'Log Out',
                   style: TextStyle(fontWeight: FontWeight.bold),
@@ -107,13 +105,13 @@ class _CustomerProfileState extends State<CustomerProfile> {
               ),
             ),
 
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
 
             CircleAvatar(
               radius: 50,
-              backgroundImage: AssetImage('assets/images/avatar.png'),
+              backgroundImage: AssetImage(profileController.text),
             ),
-            SizedBox(height: 24),
+            SizedBox(height: 14),
 
             buildDisplayField(
               icon: Icons.person,
@@ -146,7 +144,7 @@ class _CustomerProfileState extends State<CustomerProfile> {
                     vertical: 8,
                   ),
                 ),
-                onPressed: () {},
+                onPressed: add,
                 child: const Text(
                   'เพิ่มที่อยู่',
                   style: TextStyle(fontWeight: FontWeight.bold),
@@ -172,6 +170,15 @@ class _CustomerProfileState extends State<CustomerProfile> {
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'โปรไฟล์'),
         ],
       ),
+    );
+  }
+
+  void add() {}
+
+  void Logout() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => MainScreen()),
     );
   }
 }

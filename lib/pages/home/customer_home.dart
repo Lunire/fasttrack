@@ -34,6 +34,7 @@ class CustomerHome extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: 24),
             // ทักทายผู้ใช้
             Row(
               children: [
