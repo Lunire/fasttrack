@@ -1,4 +1,6 @@
+import 'package:fasttrack/pages/mypackage/mypackage.dart';
 import 'package:fasttrack/pages/profile/customer_profile.dart';
+import 'package:fasttrack/pages/send/emptyscreen.dart';
 import 'package:flutter/material.dart';
 
 class CustomerHome extends StatelessWidget {
@@ -8,15 +10,15 @@ class CustomerHome extends StatelessWidget {
     if (index == 0) {
       // อยู่หน้าแรกแล้ว
     } else if (index == 1) {
-      // Navigator.pushReplacement(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => ParcelDashboardScreen()),
-      // );
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Mypackage()),
+      );
     } else if (index == 2) {
-      // Navigator.pushReplacement(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => SendParcelScreen()),
-      // );
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => EmptyDashboardScreen()),
+      );
     } else if (index == 3) {
       Navigator.pushReplacement(
         context,

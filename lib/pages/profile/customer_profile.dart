@@ -1,6 +1,8 @@
 import 'package:fasttrack/pages/auth/main_screen.dart';
 import 'package:fasttrack/pages/home/customer_home.dart';
 import 'package:flutter/material.dart';
+import 'package:fasttrack/pages/send/emptyscreen.dart';
+import 'package:fasttrack/pages/mypackage/mypackage.dart';
 
 class CustomerProfile extends StatefulWidget {
   const CustomerProfile({super.key});
@@ -24,15 +26,15 @@ class _CustomerProfileState extends State<CustomerProfile> {
         MaterialPageRoute(builder: (context) => CustomerHome()),
       );
     } else if (index == 1) {
-      // Navigator.pushReplacement(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => ParcelDashboardScreen()),
-      // );
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Mypackage()),
+      );
     } else if (index == 2) {
-      // Navigator.pushReplacement(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => SendParcelScreen()),
-      // );
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => EmptyDashboardScreen()),
+      );
     }
   }
 
