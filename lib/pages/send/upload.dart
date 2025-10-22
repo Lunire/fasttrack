@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fasttrack/pages/send/Packageinfo.dart'; // <--- เพิ่ม import สำหรับหน้าที่ปุ่ม "ต่อไป" จะไป
+import 'package:fasttrack/pages/send/Packageinfo.dart'; // หน้าถัดไป
 
-
-// หน้าจอ Dashboard 21 (Upload Picture)
-// เปลี่ยนเป็น StatefulWidget เพื่อจัดการสถานะการเลือกรูป
 class UploadPackageScreen extends StatefulWidget {
   const UploadPackageScreen({super.key});
 
@@ -13,45 +10,89 @@ class UploadPackageScreen extends StatefulWidget {
 
 class _UploadPackageScreenState extends State<UploadPackageScreen> {
   bool _imageSelected = false;
-  // URL รูปจำลอง (เหมือนใน Dashboard 22)
+
   final String _simulatedImageUrl =
       'https://placehold.co/350x200/e8e0ff/4A25E1?text=Package+Image';
 
   // ฟังก์ชันจำลองการเลือกรูป
-  void _simulateImagePick() {
+  void _simulateImagePick(String source) {
     setState(() {
       _imageSelected = true;
     });
-    // ในแอปจริง, ตรงนี้จะเรียกใช้ image_picker เพื่อเปิดกล้อง/คลังภาพ
-    print('Simulating image pick... Image selected!');
+    print('Picked image from $source');
   }
 
-  // ฟังก์ชันสำหรับปุ่ม
+  // ✅ Popup ให้เลือกว่าจะใช้กล้องหรือคลัง
+  void _showImageSourceOptions() {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (BuildContext context) {
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Wrap(
+              children: [
+                const Center(
+                  child: Text(
+                    'เลือกรูปภาพจาก',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const Divider(),
+                ListTile(
+                  leading: const Icon(Icons.camera_alt_outlined,
+                      color: Color(0xFF4A25E1)),
+                  title: const Text('กล้อง'),
+                  onTap: () {
+                    Navigator.pop(context);
+                    _simulateImagePick('camera');
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.photo_outlined,
+                      color: Color(0xFF4A25E1)),
+                  title: const Text('คลังรูปภาพ'),
+                  onTap: () {
+                    Navigator.pop(context);
+                    _simulateImagePick('gallery');
+                  },
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  // ฟังก์ชันของปุ่มหลัก
   void _handleButtonPress() {
     if (_imageSelected) {
-      // ถ้ารูปถูกเลือกแล้ว, ไปหน้าถัดไป
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const SendParcelScreen()),
       );
     } else {
-      // ถ้ารูปยังไม่ถูกเลือก, ทำการ "เลือกรูป"
-      _simulateImagePick();
+      _showImageSourceOptions();
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFFDFDFD),
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+          onPressed: () => Navigator.of(context).pop(),
         ),
         title: const Text(
           'Delivery',
@@ -62,21 +103,14 @@ class _UploadPackageScreenState extends State<UploadPackageScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32.0),
         child: Column(
-          // จัดให้อยู่กลางๆ แต่ไม่จำเป็นต้อง center เป๊ะๆ
-          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 64), // ดันลงมาจาก AppBar
-
-            // --- ส่วนแสดงผล (เปลี่ยนตามสถานะ) ---
+            const SizedBox(height: 64),
             if (_imageSelected)
-              _buildImagePlaceholder() // แสดงรูปที่ "เลือกแล้ว"
+              _buildImagePlaceholder()
             else
-              _buildUploadPrompt(), // แสดง UI เริ่มต้นสำหรับอัปโหลด
-
-            const Spacer(), // ดันปุ่มไปด้านล่าง
-
-            // --- ปุ่ม (เปลี่ยนตามสถานะ) ---
+              _buildUploadPrompt(),
+            const Spacer(),
             ElevatedButton(
               onPressed: _handleButtonPress,
               style: ElevatedButton.styleFrom(
@@ -87,7 +121,7 @@ class _UploadPackageScreenState extends State<UploadPackageScreen> {
                 ),
               ),
               child: Text(
-                _imageSelected ? 'ต่อไป' : 'กล้อง', // เปลี่ยนข้อความปุ่ม
+                _imageSelected ? 'ต่อไป' : 'รูปภาพ',
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 18,
@@ -95,59 +129,41 @@ class _UploadPackageScreenState extends State<UploadPackageScreen> {
                 ),
               ),
             ),
-            const SizedBox(
-                height: 40), // เพิ่มช่องว่างด้านล่างปุ่ม
+            const SizedBox(height: 40),
           ],
         ),
       ),
     );
   }
 
-  // Widget สำหรับแสดง UI เริ่มต้น (ไอคอน + ข้อความ)
+  // --- UI เริ่มต้น ---
   Widget _buildUploadPrompt() {
     return Column(
       children: [
-        // 1. ไอคอนกล่องพัสดุ
-        Icon(
-          Icons.inventory_2_outlined, // ไอคอนกล่อง
-          size: 150,
-          color: Colors.grey[300],
-        ),
+        Icon(Icons.inventory_2_outlined, size: 150, color: Colors.grey[300]),
         const SizedBox(height: 32),
-
-        // 2. ข้อความ Title
         const Text(
           'A picture of the package',
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.black87,
-          ),
+              fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87),
         ),
         const SizedBox(height: 16),
-
-        // 3. ข้อความอธิบาย
         Text(
           'Please upload a picture of your package. Ensure you capture all the sides of the package.',
           textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 16,
-            color: Colors.grey[600],
-            height: 1.5,
-          ),
+          style: TextStyle(fontSize: 16, color: Colors.grey[600], height: 1.5),
         ),
       ],
     );
   }
 
-  // Widget สำหรับแสดงรูปที่ "เลือกแล้ว" (จำลอง)
+  // --- แสดงรูปที่เลือกแล้ว ---
   Widget _buildImagePlaceholder() {
-    // อ้างอิงดีไซน์จาก Dashboard 22
     return Column(
       children: [
         Container(
-          height: 200, // กำหนดความสูง
+          height: 200,
           width: double.infinity,
           decoration: BoxDecoration(
             border: Border.all(color: const Color(0xFF4A25E1), width: 2),
@@ -158,21 +174,14 @@ class _UploadPackageScreenState extends State<UploadPackageScreen> {
             child: Image.network(
               _simulatedImageUrl,
               fit: BoxFit.cover,
-              // Error handling
               errorBuilder: (context, error, stackTrace) => const Center(
-                child: Icon(
-                  Icons.image_not_supported_outlined,
-                  color: Colors.grey,
-                  size: 50,
-                ),
+                child: Icon(Icons.image_not_supported_outlined,
+                    color: Colors.grey, size: 50),
               ),
-              // Loading indicator
               loadingBuilder: (context, child, loadingProgress) {
                 if (loadingProgress == null) return child;
                 return const Center(
-                  child: CircularProgressIndicator(
-                    color: Color(0xFF4A25E1),
-                  ),
+                  child: CircularProgressIndicator(color: Color(0xFF4A25E1)),
                 );
               },
             ),
@@ -183,20 +192,13 @@ class _UploadPackageScreenState extends State<UploadPackageScreen> {
           'Package Image Ready',
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.black87,
-          ),
+              fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87),
         ),
         const SizedBox(height: 16),
         Text(
           'Press "Next" to continue.',
           textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 16,
-            color: Colors.grey[600],
-            height: 1.5,
-          ),
+          style: TextStyle(fontSize: 16, color: Colors.grey[600], height: 1.5),
         ),
       ],
     );

@@ -45,7 +45,7 @@ class _EmptyDashboardScreenState extends State<EmptyDashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // ไม่ต้องใช้ AppBar ในหน้านี้เพื่อให้ดูโล่ง
+      backgroundColor: const Color(0xFFFDFDFD),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32.0),

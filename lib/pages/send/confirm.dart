@@ -78,7 +78,7 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50], // พื้นหลังสีเทาอ่อน
+      backgroundColor: const Color(0xFFFDFDFD),
       appBar: AppBar(
         backgroundColor: Colors.white, // พื้นหลัง AppBar สีขาว
         elevation: 0,

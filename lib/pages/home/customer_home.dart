@@ -73,8 +73,9 @@ class CustomerHome extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed, // ✅ ให้แสดง label ทุกอัน
         currentIndex: 0, // อยู่หน้าแรก
-        selectedItemColor: Colors.blueAccent,
+        selectedItemColor: const Color(0xFF4A25E1), // สีม่วงเข้ม
         unselectedItemColor: Colors.grey,
+        backgroundColor: Colors.white,
         onTap: (index) => _onItemTapped(context, index),
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'หน้าแรก'),

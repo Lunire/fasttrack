@@ -1,3 +1,4 @@
+import 'package:fasttrack/pages/job/job_page.dart';
 import 'package:fasttrack/pages/profile/rider_profile.dart';
 import 'package:flutter/material.dart';
 
@@ -8,10 +9,10 @@ class RiderHome extends StatelessWidget {
     if (index == 0) {
       // อยู่หน้าแรกแล้ว
     } else if (index == 1) {
-      // Navigator.pushReplacement(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => ParcelDashboardScreen()),
-      // );
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => JobPage()),
+      );
     } else if (index == 2) {
       Navigator.pushReplacement(
         context,
@@ -66,8 +67,9 @@ class RiderHome extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed, // ✅ ให้แสดง label ทุกอัน
         currentIndex: 0, // อยู่หน้าแรก
-        selectedItemColor: Colors.blueAccent,
+        selectedItemColor: const Color(0xFF4A25E1), // สีม่วงเข้ม
         unselectedItemColor: Colors.grey,
+        backgroundColor: Colors.white,
         onTap: (index) => _onItemTapped(context, index),
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'หน้าแรก'),

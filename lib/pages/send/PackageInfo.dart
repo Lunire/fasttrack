@@ -40,7 +40,7 @@ class _SendParcelScreenState extends State<SendParcelScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       // --- ใช้ AppBar และ Body จาก DeliveryFormScreen ---
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFFDFDFD),
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
