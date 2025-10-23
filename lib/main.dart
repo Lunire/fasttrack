@@ -1,4 +1,5 @@
 import 'package:fasttrack/pages/auth/loading.dart';
+import 'package:fasttrack/pages/job/job_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         useMaterial3: true,
       ),
-      home: const Loading(), // เริ่มต้นที่หน้า Loading
+      home: const JobPage(), // เริ่มต้นที่หน้า Loading
     );
   }
 }

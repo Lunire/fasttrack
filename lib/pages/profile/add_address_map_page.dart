@@ -9,14 +9,14 @@ import 'package:latlong2/latlong.dart';
 
 const String API_ENDPOINT = "http://10.0.2.2:3000"; // ✅ ใช้กับ Emulator
 
-class AddressPage extends StatefulWidget {
-  const AddressPage({super.key});
+class AddAddressMapPage extends StatefulWidget {
+  const AddAddressMapPage({super.key});
 
   @override
-  State<AddressPage> createState() => _AddAddressMapPageState();
+  State<AddAddressMapPage> createState() => _AddAddressMapPageState();
 }
 
-class _AddAddressMapPageState extends State<AddressPage> {
+class _AddAddressMapPageState extends State<AddAddressMapPage> {
   final MapController _mapController = MapController();
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _coordinatesController = TextEditingController();

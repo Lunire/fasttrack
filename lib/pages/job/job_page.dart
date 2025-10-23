@@ -1,6 +1,8 @@
 import 'package:fasttrack/pages/home/rider_home.dart';
+import 'package:fasttrack/pages/job/map_page.dart';
 import 'package:fasttrack/pages/profile/rider_profile.dart';
 import 'package:flutter/material.dart';
+import 'package:latlong2/latlong.dart';
 
 class JobPage extends StatelessWidget {
   final List<Map<String, String>> jobs;
@@ -93,18 +95,41 @@ class JobPage extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 6,
-                    horizontal: 12,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.blue.shade100,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: const Text(
-                    'รับงาน',
-                    style: TextStyle(color: Colors.blue, fontSize: 12),
+                // ✅ ตรงนี้คือปุ่ม "รับงาน"
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MapPage(
+                          senderAddress: job['sender'] ?? 'ไม่พบที่อยู่ผู้ส่ง',
+                          receiverAddress:
+                              job['receiver'] ?? 'ไม่พบที่อยู่ผู้รับ',
+                          senderLocation: LatLng(
+                            double.parse(job['senderLat'] ?? '13.7563'),
+                            double.parse(job['senderLng'] ?? '100.5018'),
+                          ),
+                          receiverLocation: LatLng(
+                            double.parse(job['receiverLat'] ?? '13.7367'),
+                            double.parse(job['receiverLng'] ?? '100.5231'),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 6,
+                      horizontal: 12,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.blue.shade100,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: const Text(
+                      'รับงาน',
+                      style: TextStyle(color: Colors.blue, fontSize: 12),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 8),

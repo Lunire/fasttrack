@@ -9,9 +9,26 @@ class RiderHome extends StatelessWidget {
     if (index == 0) {
       // อยู่หน้าแรกแล้ว
     } else if (index == 1) {
+
+      //เอาไว้ทดสอบ
+      final jobs = [
+        {
+          'id': 'JOB001',
+          'image': 'https://picsum.photos/200',
+          'destination': 'ส่งเอกสารด่วน',
+          'date': '23 ต.ค. 2025',
+          'sender': '123 ถนนสุขุมวิท, กรุงเทพฯ',
+          'receiver': '99 ถนนพหลโยธิน, กรุงเทพฯ',
+          'senderLat': '13.7563',
+          'senderLng': '100.5018',
+          'receiverLat': '13.7367',
+          'receiverLng': '100.5231',
+        },
+      ];
+
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => JobPage()),
+        MaterialPageRoute(builder: (context) => JobPage(jobs: jobs)),
       );
     } else if (index == 2) {
       Navigator.pushReplacement(
